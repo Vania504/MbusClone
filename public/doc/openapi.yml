@@ -1,0 +1,63 @@
+openapi: 3.0.0
+servers:
+  - url: https://api-iop.dev.hoozaround.com/
+    description: Developer server
+  - url: https://api-iop.stage.hoozaround.com/
+    description: Stage server
+  - url: https://api-iop.hoozaround.com/
+    description: Production server
+info:
+  description: |
+    This is a sample IoP Industry Documentation.
+
+  version: 1.0.1
+  title: IoP Industry Documentation
+  termsOfService: '#'
+#  x-logo:
+#    url: 'https://business.dev.hoozaround.com/assets/img/new_logo.png'
+#    altText: IoP Logo
+paths:
+  /settings:
+    get:
+      tags:
+        - Settings
+      summary: Get all settings
+      description: Get all settings
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/settings'
+
+components:
+  schemas:
+    settings:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              key:
+                type: string
+              value:
+                type: string
+              type:
+                type: string
+
+  securitySchemes:
+    bearerAuth:
+      description:
+        For this sample, you can use the api key `X-API-KEY` to test the
+        authorization filters.
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
